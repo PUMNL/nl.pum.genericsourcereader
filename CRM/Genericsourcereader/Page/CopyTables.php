@@ -803,7 +803,7 @@ FROM
      ' . $db . '.civicrm_custom_group cgrp,
      ' . $db . '.civicrm_custom_field cfld
    WHERE
-     cgrp.title = \'Additional Data\' AND
+     cgrp.title = \'' . $elm . '\' AND
      cfld.custom_group_id = cgrp.id
    ORDER BY
      cfld.weight) fld,
@@ -867,7 +867,7 @@ FROM
 									} else {
 										fwrite($fileExport, $tab . $tab . $tab . $tab . $tab . $tab . "'end_date_years' => " . $dao_fld->end_date_years . "," . $eol);
 									}
-									if (!$dao_fld->data_type=='Date') {
+									if ($dao_fld->data_type!='Date') {
 										fwrite($fileExport, $tab . $tab . $tab . $tab . $tab . $tab . "'date_format' => NULL," . $eol); // API: string
 									} else {
 										fwrite($fileExport, $tab . $tab . $tab . $tab . $tab . $tab . "'date_format' => self::DT_FORMAT_YMD," . $eol); // API: string
