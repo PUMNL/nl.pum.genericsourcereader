@@ -791,19 +791,23 @@ FROM
 						fwrite($fileExport, $tab . $tab . $tab . $tab . "'collapse_display' => " . $dao->collapse_display . "," . $eol);
 						fwrite($fileExport, $tab . $tab . $tab . $tab . "'collapse_adv_display' => " . $dao->collapse_adv_display . "," . $eol);
 						fwrite($fileExport, $tab . $tab . $tab . $tab . "'fieldset' => array(" . $eol);
-
 						// start loop custom fields
 						$sql_fld = '
 SELECT
-  cfld.*,
+  fld.*,
   @rn := @rn + 10 rank
 FROM
-  ' . $db . '.civicrm_custom_field cfld,
+  (SELECT
+     cfld.*
+   FROM
+     ' . $db . '.civicrm_custom_group cgrp,
+     ' . $db . '.civicrm_custom_field cfld
+   WHERE
+     cgrp.title = \'Additional Data\' AND
+     cfld.custom_group_id = cgrp.id
+   ORDER BY
+     cfld.weight) fld,
   (SELECT @rn := 0) rnknr
-WHERE
-  cfld.custom_group_id = 11
-ORDER BY
-  cfld.weight
 						';
 						try{
 							$dao_fld = CRM_Core_DAO::executeQuery($sql_fld);
