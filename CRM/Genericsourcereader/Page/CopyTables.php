@@ -827,6 +827,8 @@ FROM
 									}
 									$tmp = $dao_fld->is_required==1?'TRUE':'FALSE';
 									fwrite($fileExport, $tab . $tab . $tab . $tab . $tab . $tab . "'is_required' => " . $tmp . "," . $eol); // API: boolean
+									$tmp = $dao_fld->is_view==1?'TRUE':'FALSE';
+									fwrite($fileExport, $tab . $tab . $tab . $tab . $tab . $tab . "'is_view' => " . $tmp . "," . $eol); // API: boolean
 									$tmp = $dao_fld->is_searchable==1?'TRUE':'FALSE';
 									fwrite($fileExport, $tab . $tab . $tab . $tab . $tab . $tab . "'is_searchable' => " . $tmp . "," . $eol); // API: boolean
 									$tmp = $dao_fld->is_search_range==1?'TRUE':'FALSE';
