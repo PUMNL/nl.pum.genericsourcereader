@@ -254,6 +254,7 @@ class CRM_Genericsourcereader_Page_CopyTables extends CRM_Core_Page {
 			'Seminar Debriefing SC',
 			'Solicitation Outline',
 			'Workhistory',
+			'Debriefing Representative',
 		),
 		'Tag' => array(
 			'Sector',
